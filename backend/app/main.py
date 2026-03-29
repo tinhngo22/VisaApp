@@ -4,10 +4,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.router import api_router
 
+#dependency for db
+from fastapi import Depends, FastAPI, HTTPException, Request,status
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from app.core.db import Base,engine,get_db
+
+#create all tables from models
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
     title=settings.APP_NAME,
     debug=settings.DEBUG,
 )
+
+
 
 app.add_middleware(
     CORSMiddleware,

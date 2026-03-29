@@ -10,6 +10,6 @@ class Settings(BaseSettings):
     APP_ENV: str = "development"
     DEBUG: bool = True
     CORS_ORIGINS: List[str] = ["http://localhost:3000"]
-
+    DATABASE_URL: str = ""
 
 settings = Settings()
